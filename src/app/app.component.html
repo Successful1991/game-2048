@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="field" (swipe)="swipe($event.type)" >
-  <div class="place" *ngFor="let place of places">{{place}}</div>
+<div class="field" >
+  <div class="place" *ngFor="let place of places" (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)">{{place}}</div>
 </div>
 

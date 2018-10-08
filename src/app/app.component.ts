@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   public places: any[] = [2, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
   constructor() {}
   ngOnInit() {
     this.addNumber();
@@ -35,7 +36,7 @@ export class AppComponent implements OnInit {
     return (Math.floor(Math.random() * (max - min)) + min);
   }
 
-  swipe(action) {
+  swipe(action = this.SWIPE_ACTION.RIGHT) {
     alert(action);
   }
   // swipe(e) {
