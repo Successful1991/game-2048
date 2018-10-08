@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   }
 
   swipe(action) {
-    console.log(action);
+    alert(action);
   }
   // swipe(e) {
   //   console.log(e);
