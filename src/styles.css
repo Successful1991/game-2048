@@ -2,6 +2,10 @@
 app-root{
   display: flex;
   align-items: center;
-  height: 500px;
-  /*width: 500px;*/
+}
+
+@media screen and (max-width: 1024px){
+  app-root{
+    flex-direction: column;
+  }
 }
