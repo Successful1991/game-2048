@@ -12,7 +12,12 @@ export class AppComponent implements OnInit {
     ['', '' , '' , '' ],
     ['', '', '' , '']
   ];
-  public places: any[] = this.placesDefault;
+  public places: any[] = [
+    [2, '', '', ''],
+    ['', '', '' , ''],
+    ['', '' , '' , '' ],
+    ['', '', '' , '']
+  ];
 
   public pl = {
     0: {x: 0, y: -1}, // up
@@ -185,7 +190,6 @@ export class AppComponent implements OnInit {
     if (this.checkFreeCells() === -1 && !this.checkMoves(this.indexAddNumber, this.pl) ) {
       this.timerNewGame();
     }
-
    }
 
   timerNewGame() {
@@ -195,10 +199,10 @@ export class AppComponent implements OnInit {
     myTimerfunc.call(this);
 
     function myTimerfunc () {
-      setTimeout(t.bind(this), 1000);
+      setTimeout(closePopup.bind(this), 1000);
     }
 
-    function t() {
+    function closePopup() {
       time -= 1;
       document.getElementsByClassName('newGameTime')[0].innerHTML = (time.toString());
       if (time < 0) {
