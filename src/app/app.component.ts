@@ -6,19 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
-//   public places: any[] = [
-//     [2, '', '', ''],
-//     ['', '', '' , ''],
-//     ['', '' , '' , '' ],
-//     ['', '', '' , '']
-// ];
-  public places: any[] = [
-    [2, 4, 2, 4],
-    [4, 2, 4 , 2],
-    [2, 4 , 2 , 4 ],
-    [4, 2, '' , 8]
-];
+  public placesDefault: any[] = [
+    [2, '', '', ''],
+    ['', '', '' , ''],
+    ['', '' , '' , '' ],
+    ['', '', '' , '']
+  ];
+  public places: any[] = this.placesDefault;
 
   public pl = {
     0: {x: 0, y: -1}, // up
@@ -54,6 +48,7 @@ export class AppComponent implements OnInit {
     });
   }
 
+
   addNumber() {
     const number = Math.random() < 0.8 ? 2 : 4;
     const index = (this.random(1, 16) - 1);
@@ -85,7 +80,6 @@ export class AppComponent implements OnInit {
 
     if ( this.places[x][y] === '') {
       this.places[x][y] = number;
-       // setTimeout(() => this.places[x][y] = number , 300);
       return {y: y, x: x};
     } else if (this.places[x][y] !== '' && y > 0 ) {
       y -= 1;
@@ -187,23 +181,34 @@ export class AppComponent implements OnInit {
       this.victory( );
     } else if (this.numberAdded) {
       this.indexAddNumber = this.addNumber();
-      // setTimeout(() => indexAddNumber = this.addNumber( ) , 0);
     }
     if (this.checkFreeCells() === -1 && !this.checkMoves(this.indexAddNumber, this.pl) ) {
-      let time = 10;
-      const over: HTMLElement = document.getElementsByClassName('gameOver__bg')[0] as HTMLElement;
-      over.style.display = 'flex';
-      const timerNewGane = setInterval(function () {
-        time -= 1;
-        document.getElementsByClassName('newGameTime')[0].innerHTML = (time.toString());
-        if (time < 0) {
-          over.style.display = 'none';
-          clearInterval(timerNewGane);
-        }
-      }, 1000);
+      this.timerNewGame();
     }
 
    }
+
+  timerNewGame() {
+    let time = 3;
+    const over: HTMLElement = document.getElementsByClassName('gameOver__bg')[0] as HTMLElement;
+    over.style.display = 'flex';
+    myTimerfunc.call(this);
+
+    function myTimerfunc () {
+      setTimeout(t.bind(this), 1000);
+    }
+
+    function t() {
+      time -= 1;
+      document.getElementsByClassName('newGameTime')[0].innerHTML = (time.toString());
+      if (time < 0) {
+        over.style.display = 'none';
+        this.places = this.placesDefault;
+      } else {
+        myTimerfunc.call(this);
+      }
+    }
+  }
 
   checkMoves(el, pl) {
     for (let i = 0; i < 4; i++) {

@@ -22,6 +22,7 @@
   justify-content: center;
   align-items: center;
   font-size: 38px;
+  line-height: 0;
   font-family: Roboto;
   height: 100%;
   width: 25%;
@@ -92,7 +93,7 @@
   .field{
     height: auto;
     max-height: 500px;
-    width: auto;
+    width: 100%;
     max-width: 500px;
   }
 }
